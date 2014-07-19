@@ -1,17 +1,3 @@
-Shared = {
-
-  UTORRENT_NAMESPACE : "utorrent",
-
-  getSetting: function(name) {
-    return localStorage.getItem(Shared.UTORRENT_NAMESPACE + "." + name) || "";
-  },
-  setSetting: function(name, value) {
-    localStorage.setItem(Shared.UTORRENT_NAMESPACE + "." + name, value);
-  }
-
-}
-
-
 function getUtorrentToken() {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "http://" + Shared.getSetting('username') + ":" + Shared.getSetting('password') + "@" + Shared.getSetting('host') + ":" + Shared.getSetting('port') + "/gui/token.html", false);
@@ -21,12 +7,12 @@ function getUtorrentToken() {
       var parser = new DOMParser();
       var token = parser.parseFromString(xhr.responseText, "text/html").getElementById("token").innerHTML;
       return token;
-    }
-    else {
+  }
+  else {
       alert ("An error ocurred sending the magnet link to uTorrent. Please be sure settings are correct and that the server is running");
-    }
+  }
 
-    return null;
+  return null;
 }
 
 
@@ -50,20 +36,20 @@ function getClickHandler() {
 
         if (!(resp.build > 0)) {
           alert ("An error ocurred sending the magnet link to uTorrent. Please be sure settings are correct and that the server is running");
-        }
       }
+  }
 
-    }
-    xhr.send();
+}
+xhr.send();
 
 
-  };
+};
 };
 
 /**
  * Create a context menu which will only show up for images.
  */
-chrome.contextMenus.create({
+ chrome.contextMenus.create({
   "id" : "utorrent-send-link",
   "title" : "Send magnet link to uTorrent",
   "type" : "normal",

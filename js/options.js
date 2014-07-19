@@ -1,39 +1,37 @@
 
 $(document).ready(function() {
-	console.log('the document is ready');
-	OptionsPage.loadSettings();
+    OptionsPage.loadSettings();
 
-	$('#save-settings').click(function(e) {
-			e.preventDefault();
-			console.log('settings saved');
+    $('#save-settings').click(function(e) {
+        e.preventDefault();
 
-			OptionsPage.setSetting('host', 'host');
-			OptionsPage.setSetting('port', 'port');
-			OptionsPage.setSetting('username', 'username');
-			OptionsPage.setSetting('password', 'password');
+        OptionsPage.setSetting('host', 'host');
+        OptionsPage.setSetting('port', 'port');
+        OptionsPage.setSetting('username', 'username');
+        OptionsPage.setSetting('password', 'password');
 
+        alert("Your settings have been saved");
 
-
-	});
+    });
 });
 
 
 OptionsPage = {
-	loadSettings : function () {
-		OptionsPage.getSetting('host', 'host');
-		OptionsPage.getSetting('port', 'port');
-		OptionsPage.getSetting('username', 'username');
-		OptionsPage.getSetting('password', 'password');
-	},
+    loadSettings : function () {
+        OptionsPage.getSetting('host', 'host');
+        OptionsPage.getSetting('port', 'port');
+        OptionsPage.getSetting('username', 'username');
+        OptionsPage.getSetting('password', 'password');
+    },
 
-	getSetting : function (setting, elementId) {	
-		var value = Shared.getSetting(setting);
-		$("#" + elementId).val(value);
-	},
+    getSetting : function (setting, elementId) {    
+        var value = Shared.getSetting(setting);
+        $("#" + elementId).val(value);
+    },
 
-	setSetting : function (elementId, setting) {	
-		var value = $("#" + elementId).val(); 
-		Shared.setSetting(setting, value);
-	}
+    setSetting : function (elementId, setting) {    
+        var value = $("#" + elementId).val(); 
+        Shared.setSetting(setting, value);
+    }
 }
 
