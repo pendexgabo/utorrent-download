@@ -1,5 +1,3 @@
-
-
 Shared = {
 
 	UTORRENT_NAMESPACE : "utorrent",
