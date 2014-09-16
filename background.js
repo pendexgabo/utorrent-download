@@ -9,7 +9,16 @@ function getUtorrentToken() {
         return token;
     }
     else {
-        alert ("An error ocurred sending the magnet link to uTorrent. Please be sure settings are correct and that the server is running");
+        if (Shared.getSetting('notifyme') == 'error') {
+            var options = {
+                "type": "basic",
+                "title": "uTorrent Magnet Link Sender",
+                "contextMessage": "Please be sure settings are correct and that the server is running.",
+                "message": "An error ocurred getting the auth token.",
+                "iconUrl": "utorrent-128.png",
+            }
+            chrome.notifications.create('uTorrent-error', options, function (a) {});
+        }
     }
 
     return null;
@@ -31,7 +40,27 @@ function getClickHandler() {
                 var resp = JSON.parse(xhr.responseText);
 
                 if (!(resp.build > 0)) {
-                  alert ("An error ocurred sending the magnet link to uTorrent. Please be sure settings are correct and that the server is running");
+                    if (Shared.getSetting('notifyme') == 'error') {
+                        var options = {
+                            "type": "basic",
+                            "title": "uTorrent Magnet Link Sender",
+                            "contextMessage": "Please be sure settings are correct and that the server is running.",
+                            "message": "An error ocurred sending the magnet link to uTorrent.",
+                            "iconUrl": "utorrent-128.png",
+                        }
+                        chrome.notifications.create('uTorrent-error', options, function (a) {});
+                    }
+                }
+                else {
+                    if (Shared.getSetting('notifyme') == 'success') {
+                        var options = {
+                            "type": "basic",
+                            "title": "uTorrent Magnet Link Sender",
+                            "message": "Magnet Link successfully sent to uTorrent server",
+                            "iconUrl": "utorrent-128.png",
+                        }
+                        chrome.notifications.create('uTorrent-success', options, function (a) {});
+                    }
                 }
             }
         }

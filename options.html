@@ -13,10 +13,29 @@
   <script src="js/shared.js"></script>
   <script src="js/options.js"></script>
 
+
+  <style>
+
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+  </style>
 </head>
 <body>
-  <h1>uTorrent Magnet Link Sender</h1>
 
+  <div class="container" id="container-div">
+  <h2>uTorrent Magnet Link Sender</h2>
+  <div id="notification"></div>
 
   <form class="form-horizontal" role="form" id="settings-form">
     <div class="form-group">
@@ -41,6 +60,7 @@
 </div>
 <span class="help-block">Username to use (required)</span>
 </div>
+
 <div class="form-group">
   <label for="password" class="col-sm-2 control-label">Password</label>
   <div class="col-xs-2">
@@ -48,12 +68,33 @@
 </div>
 <span class="help-block">Password to use (required)</span>
 </div>
+
+  <div class="form-group">
+    <label for="notifyme" class="col-sm-2 control-label">Notify me</label>
+    <div class="col-xs-2">
+    <select class="form-control" name="notifyme" id="notifyme">
+      <option value="never">Never</option>
+      <option value="success">On sucess</option>
+      <option value="error">On error</option>
+    </select>
+  </div>
+  <span class="help-block">Want to get a notification?</span>
+  </div>
+
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
-    <button class="btn btn-default" id="save-settings">Save Settings</button>
+    <button class="btn btn-default btn-sm" id="save-settings">Save Settings</button>
+    <button class="btn btn-info btn-sm" id="buymeabeer">Buy me a Beer</button>
 </div>
 </div>
 </form>
 
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="buymeabeer-form">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+  </div>
 </body>
 </html>
