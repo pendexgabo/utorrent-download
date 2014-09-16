@@ -1,7 +1,15 @@
 uTorrent Download
 ===========
 
-Send a link to the uTorrent web UI using the contextal menu in chrme
+Send a link to the uTorrent web UI using the contextal menu in chrome
+
+
+News
+-----------
+
+0.0.4
+  - you can now buy me a beer
+  - get notifications about the result
 
 About
 -----------
