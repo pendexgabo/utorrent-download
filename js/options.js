@@ -6,6 +6,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         OptionsPage.setSetting('host', 'host');
+        OptionsPage.setSetting('protocol', 'protocol');
         OptionsPage.setSetting('port', 'port');
         OptionsPage.setSetting('username', 'username');
         OptionsPage.setSetting('password', 'password');
@@ -31,10 +32,11 @@ $(document).ready(function() {
 OptionsPage = {
     loadSettings : function () {
         OptionsPage.getSetting('host', 'host');
+        OptionsPage.getSetting('protocol', 'protocol');
         OptionsPage.getSetting('port', 'port');
         OptionsPage.getSetting('username', 'username');
         OptionsPage.getSetting('password', 'password');
-        OptionsPage.getSetting('notifyme', 'never');
+        OptionsPage.getSetting('notifyme', 'notifyme');
     },
 
     getSetting : function (setting, elementId) {    

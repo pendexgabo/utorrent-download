@@ -19,7 +19,38 @@ Shared = {
 
 		console.log('set setting <' + name + '> : ' + value); 
 
+	},
+	notify: function(on, _details) {
+
+		var choice = Shared.getSetting('notifyme');
+
+		if (typeof(_details) == 'undefined') {
+			_details = 'An error ocurred.';
+		}
+
+		if ((choice == 'both' || choice == 'error') && on == 'error') {
+            var options = {
+                "type": "basic",
+                "title": "uTorrent Magnet Link Sender",
+                "contextMessage": "Please be sure settings are correct and that the server is running.",
+                "message": _details,
+                "iconUrl": "utorrent-128.png",
+            }
+            chrome.notifications.create('utorrent-error-' + (new Date().getTime()), options, function (a) {});
+		}
+
+		if ((choice == 'both' || choice == 'success') && on == 'success') {
+	        var options = {
+	            "type": "basic",
+	            "title": "uTorrent Magnet Link Sender",
+	            "message": "Magnet Link successfully sent to uTorrent server",
+	            "iconUrl": "utorrent-128.png",
+	        }
+	        chrome.notifications.create('utorrent-success-' + (new Date().getTime()), options, function (a) {});
+		}
+
 	}
 
 }
+
 

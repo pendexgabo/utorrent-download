@@ -1,6 +1,6 @@
 {
   "name" : "uTorrent Link Sender",
-  "version" : "0.0.4",
+  "version" : "0.0.5",
   "description" : "Send a magnet link to the uTorrent Web UI",
   "background" : {
                   "persistent": true, 

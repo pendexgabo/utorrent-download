@@ -38,14 +38,25 @@ body > .container {
   <div id="notification"></div>
 
   <form class="form-horizontal" role="form" id="settings-form">
+   
     <div class="form-group">
       <label for="host" class="col-sm-2 control-label">Host</label>
       <div class="col-xs-2">
         <input type="text" class="form-control" id="host" placeholder="Host">
     </div>
     <span class="help-block">The uTorrent host to connect (required)</span>
+  </div>
 
-</div>
+  <div class="form-group">
+    <label for="protocol" class="col-sm-2 control-label">Protocol</label>
+    <div class="col-xs-2">
+    <select class="form-control" name="protocol" id="protocol">
+      <option value="http://">HTTP</option>
+      <option value="https://">HTTPS</option>
+    </select>
+  </div>
+  </div>
+
 <div class="form-group">
   <label for="port" class="col-sm-2 control-label">Port</label>
   <div class="col-xs-2">
@@ -76,6 +87,7 @@ body > .container {
       <option value="never">Never</option>
       <option value="success">On sucess</option>
       <option value="error">On error</option>
+      <option value="both">Both</option>
     </select>
   </div>
   <span class="help-block">Want to get a notification?</span>

@@ -7,6 +7,10 @@ Send a link to the uTorrent web UI using the contextal menu in chrome
 News
 -----------
 
+0.0.5
+  - ability to choose protocol
+  - get when get notifications: on error, success, both, never
+
 0.0.4
   - you can now buy me a beer
   - get notifications about the result
