@@ -10,14 +10,14 @@ Shared = {
 
 		var value = String(localStorage.getItem(Shared.APPLICATION_NAMESPACE + "." + name) || _default);
 
-		console.log('get setting <' + name + '> : ' + value); 
+	//	console.log('get setting <' + name + '> : ' + value); 
 
 		return value;
 	},
 	setSetting: function(name, value) {
 		localStorage.setItem(Shared.APPLICATION_NAMESPACE + "." + name, value);
 
-		console.log('set setting <' + name + '> : ' + value); 
+	//	console.log('set setting <' + name + '> : ' + value); 
 
 	},
 	notify: function(on, _details) {
@@ -34,7 +34,7 @@ Shared = {
                 "title": "uTorrent Magnet Link Sender",
                 "contextMessage": "Please be sure settings are correct and that the server is running.",
                 "message": _details,
-                "iconUrl": "utorrent-128.png",
+                "iconUrl": "utorrent-128.png"
             }
             chrome.notifications.create('utorrent-error-' + (new Date().getTime()), options, function (a) {});
 		}
@@ -44,7 +44,7 @@ Shared = {
 	            "type": "basic",
 	            "title": "uTorrent Magnet Link Sender",
 	            "message": "Magnet Link successfully sent to uTorrent server",
-	            "iconUrl": "utorrent-128.png",
+	            "iconUrl": "utorrent-128.png"
 	        }
 	        chrome.notifications.create('utorrent-success-' + (new Date().getTime()), options, function (a) {});
 		}

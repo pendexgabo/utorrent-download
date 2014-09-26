@@ -9,7 +9,7 @@ News
 
 0.0.5
   - ability to choose protocol
-  - get when get notifications: on error, success, both, never
+  - choose when to get notifications: on error, success, both, never
 
 0.0.4
   - you can now buy me a beer
