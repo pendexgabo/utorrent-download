@@ -1,56 +1,60 @@
 Shared = {
 
-	APPLICATION_NAMESPACE : "utorrent",
+  APPLICATION_NAMESPACE: "utorrent",
 
-	getSetting: function(name, _default) {
+  getSetting: function(name, _default) {
 
-		if (typeof(_default) == 'undefined') {
-			_default = '';
-		}
+    if (typeof (_default) == 'undefined') {
+      _default = '';
+    }
 
-		var value = String(localStorage.getItem(Shared.APPLICATION_NAMESPACE + "." + name) || _default);
+    var value = String(localStorage.getItem(Shared.APPLICATION_NAMESPACE + "." + name) || _default);
 
-	//	console.log('get setting <' + name + '> : ' + value); 
+    return value;
+  },
+  setSetting: function(name, value) {
 
-		return value;
-	},
-	setSetting: function(name, value) {
-		localStorage.setItem(Shared.APPLICATION_NAMESPACE + "." + name, value);
+    localStorage.setItem(Shared.APPLICATION_NAMESPACE + "." + name, value);
 
-	//	console.log('set setting <' + name + '> : ' + value); 
+  },
+  notify: function(on, _details) {
 
-	},
-	notify: function(on, _details) {
+    var choice = Shared.getSetting('notifyme');
 
-		var choice = Shared.getSetting('notifyme');
+    if (typeof (_details) == 'undefined') {
+      _details = 'An error ocurred.';
+    }
 
-		if (typeof(_details) == 'undefined') {
-			_details = 'An error ocurred.';
-		}
+    if ((choice == 'both' || choice == 'error') && on == 'error') {
+      var options = {
+        "type": "basic",
+        "title": "uTorrent Magnet Link Sender",
+        "contextMessage": "Please be sure settings are correct and that the server is running.",
+        "message": _details,
+        "iconUrl": "utorrent-128.png"
+      }
+      chrome.notifications.create('utorrent-error-' + (new Date().getTime()), options, function(a) {});
+    }
 
-		if ((choice == 'both' || choice == 'error') && on == 'error') {
-            var options = {
-                "type": "basic",
-                "title": "uTorrent Magnet Link Sender",
-                "contextMessage": "Please be sure settings are correct and that the server is running.",
-                "message": _details,
-                "iconUrl": "utorrent-128.png"
-            }
-            chrome.notifications.create('utorrent-error-' + (new Date().getTime()), options, function (a) {});
-		}
+    if ((choice == 'both' || choice == 'success') && on == 'success') {
+      var options = {
+        "type": "basic",
+        "title": "uTorrent Magnet Link Sender",
+        "message": "Magnet Link successfully sent to uTorrent server",
+        "iconUrl": "utorrent-128.png"
+      }
+      chrome.notifications.create('utorrent-success-' + (new Date().getTime()), options, function(a) {});
+    }
 
-		if ((choice == 'both' || choice == 'success') && on == 'success') {
-	        var options = {
-	            "type": "basic",
-	            "title": "uTorrent Magnet Link Sender",
-	            "message": "Magnet Link successfully sent to uTorrent server",
-	            "iconUrl": "utorrent-128.png"
-	        }
-	        chrome.notifications.create('utorrent-success-' + (new Date().getTime()), options, function (a) {});
-		}
-
-	}
+  }
 
 }
+
+
+
+
+
+
+
 
 
