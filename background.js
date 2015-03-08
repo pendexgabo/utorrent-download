@@ -44,10 +44,10 @@ function getClickHandler() {
       if (resp.build > 0) {
         Shared.notify('success');
       } else {
-        Shared.notify('error', 'An error ocurred sending magnet link to uTorrent server.');
+        Shared.notify('error', 'An error ocurred sending link to uTorrent server.');
       }
     } else {
-      Shared.notify('error', 'An error ocurred sending magnet link to uTorrent server.');
+      Shared.notify('error', 'An error ocurred sending link to uTorrent server.');
     }
 
 
@@ -57,10 +57,10 @@ function getClickHandler() {
 
 chrome.contextMenus.create({
   "id": "utorrent-send-link",
-  "title": "Send magnet link to uTorrent",
+  "title": "Send to uTorrent",
   "type": "normal",
   "contexts": ["link"],
-  "targetUrlPatterns": ["magnet:*"],
+  "targetUrlPatterns": ["magnet:*", "*://*/*.torrent"],
   "onclick": getClickHandler()
 });
 
