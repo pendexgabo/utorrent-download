@@ -28,7 +28,7 @@ Shared = {
     if ((choice == 'both' || choice == 'error') && on == 'error') {
       var options = {
         "type": "basic",
-        "title": "uTorrent Magnet Link Sender",
+        "title": "uTorrent Link Sender",
         "contextMessage": "Please be sure settings are correct and that the server is running.",
         "message": _details,
         "iconUrl": "utorrent-128.png"
@@ -39,8 +39,8 @@ Shared = {
     if ((choice == 'both' || choice == 'success') && on == 'success') {
       var options = {
         "type": "basic",
-        "title": "uTorrent Magnet Link Sender",
-        "message": "Magnet Link successfully sent to uTorrent server",
+        "title": "uTorrent Link Sender",
+        "message": "Link successfully sent to uTorrent server.",
         "iconUrl": "utorrent-128.png"
       }
       chrome.notifications.create('utorrent-success-' + (new Date().getTime()), options, function(a) {});
