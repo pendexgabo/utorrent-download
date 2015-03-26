@@ -11,6 +11,10 @@ If you think the extension is cool and you are in a good mood you can consider b
 
 ## News
 
+
+0.0.8
+  - fixed broken package
+
 0.0.7
   - ability to send ```.torrent``` links in addition to ```magnet:?``` links
 
