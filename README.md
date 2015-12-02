@@ -11,6 +11,8 @@ If you think the extension is cool and you are in a good mood you can consider b
 
 ## News
 
+0.0.9
+  - added ability to set a label (right now working only with magnet links)
 
 0.0.8
   - fixed broken package

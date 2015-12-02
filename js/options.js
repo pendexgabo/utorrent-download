@@ -1,68 +1,67 @@
-
 $(document).ready(function() {
-  OptionsPage.loadSettings();
+    OptionsPage.loadSettings();
 
-  $('#save-settings').click(function(e) {
-    e.preventDefault();
+    $('#save-settings').click(function(e) {
+        e.preventDefault();
 
-    OptionsPage.setSetting('host', 'host');
-    OptionsPage.setSetting('protocol', 'protocol');
-    OptionsPage.setSetting('port', 'port');
-    OptionsPage.setSetting('username', 'username');
-    OptionsPage.setSetting('password', 'password');
-    OptionsPage.setSetting('notifyme', 'notifyme');
+        OptionsPage.setSetting('host', 'host');
+        OptionsPage.setSetting('protocol', 'protocol');
+        OptionsPage.setSetting('port', 'port');
+        OptionsPage.setSetting('username', 'username');
+        OptionsPage.setSetting('password', 'password');
+        OptionsPage.setSetting('notifyme', 'notifyme');
+        OptionsPage.setSetting('torrent-label', 'torrent-label');
 
-    $('#notification').html('<div class="alert alert-success" role="alert" id="settings-saved">Your settings have been saved.</div>');
 
-    setTimeout(function() {
-      $('#settings-saved').fadeOut(500);
-    }, 2000);
+        $('#notification').html('<div class="alert alert-success" role="alert" id="settings-saved">Your settings have been saved.</div>');
 
-  });
+        setTimeout(function() {
+            $('#settings-saved').fadeOut(500);
+        }, 2000);
 
-  $('#buymeabeer').click(function(e) {
-    e.preventDefault();
-    $('#buymeabeer-form').submit();
-  });
+    });
+
+    $('#buymeabeer').click(function(e) {
+        e.preventDefault();
+        $('#buymeabeer-form').submit();
+    });
 
 
 });
 
 
 OptionsPage = {
-  loadSettings: function() {
-    OptionsPage.getSetting('host', 'host');
-    OptionsPage.getSetting('protocol', 'protocol');
-    OptionsPage.getSetting('port', 'port');
-    OptionsPage.getSetting('username', 'username');
-    OptionsPage.getSetting('password', 'password');
-    OptionsPage.getSetting('notifyme', 'notifyme');
-  },
+    loadSettings: function() {
+        OptionsPage.getSetting('host', 'host');
+        OptionsPage.getSetting('protocol', 'protocol');
+        OptionsPage.getSetting('port', 'port');
+        OptionsPage.getSetting('username', 'username');
+        OptionsPage.getSetting('password', 'password');
+        OptionsPage.getSetting('notifyme', 'notifyme');
+        OptionsPage.getSetting('torrent-label', 'torrent-label');
+    },
 
-  getSetting: function(setting, elementId) {
-    var value = Shared.getSetting(setting);
+    getSetting: function(setting, elementId) {
+        var value = Shared.getSetting(setting);
 
-    if ($("#" + elementId).attr('type') == 'checkbox') {
-      value == 'true' ?
-        $("#" + elementId).attr('checked', 'checked') :
-        null;
-    } else {
-      $("#" + elementId).val(value);
+        if ($("#" + elementId).attr('type') == 'checkbox') {
+            value == 'true' ?
+                $("#" + elementId).attr('checked', 'checked') :
+                null;
+        } else {
+            $("#" + elementId).val(value);
+        }
+
+    },
+
+    setSetting: function(elementId, setting) {
+
+        if ($("#" + elementId).attr('type') == 'checkbox') {
+            var value = $("#" + elementId).is(":checked") ? 'true' : 'false';
+        } else {
+            var value = $("#" + elementId).val();
+        }
+
+        Shared.setSetting(setting, value);
     }
-
-  },
-
-  setSetting: function(elementId, setting) {
-
-    if ($("#" + elementId).attr('type') == 'checkbox') {
-      var value = $("#" + elementId).is(":checked") ? 'true' : 'false';
-    } else {
-      var value = $("#" + elementId).val();
-    }
-
-    Shared.setSetting(setting, value);
-  }
 }
-
-
-
