@@ -83,7 +83,7 @@ chrome.contextMenus.create({
     "title": "Send to uTorrent",
     "type": "normal",
     "contexts": ["link"],
-    "targetUrlPatterns": ["magnet:*", "*://*/*.torrent"],
+    "targetUrlPatterns": ["magnet:*", "*://*/*.torrent", "*://*/*.torrent?*"],
     "onclick": getClickHandler()
 });
 
