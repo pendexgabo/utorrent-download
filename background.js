@@ -78,6 +78,10 @@ function getClickHandler() {
 }
 
 
+function searchLink() {
+	return $("a");
+}
+
 chrome.contextMenus.create({
     "id": "utorrent-send-link",
     "title": "Send to uTorrent",
@@ -85,6 +89,19 @@ chrome.contextMenus.create({
     "contexts": ["link"],
     "targetUrlPatterns": ["magnet:*", "*://*/*.torrent"],
     "onclick": getClickHandler()
+});
+
+
+chrome.contextMenus.create({
+    "id": "utorrent-ui",
+    "title": "Go uTorrent",
+    "type": "normal",
+    "contexts": ["page_action"],
+    "onclick": function() {
+    	chrome.tabs.create({
+            url: getUtorrentHost() + '/gui/'
+        })
+    }
 });
 
 if (Shared.getSetting('notifyme') != 'never') {
@@ -95,11 +112,16 @@ if (Shared.getSetting('notifyme') != 'never') {
     });
 }
 
-// open the options page only the first time in order to configure
-chrome.runtime.onInstalled.addListener(function() {
-    Shared.setSetting('protocol', 'http://');
 
-    chrome.tabs.create({
-        url: chrome.runtime.getURL('options.html')
-    });
-});
+chrome.browserAction.setBadgeBackgroundColor({ color: [255, 0, 0, 255] });
+chrome.browserAction.setBadgeText({text: "4"});
+
+
+// open the options page only the first time in order to configure
+// chrome.runtime.onInstalled.addListener(function() {
+//     Shared.setSetting('protocol', 'http://');
+
+//     chrome.tabs.create({
+//         url: chrome.runtime.getURL('options.html')
+//     });
+// });

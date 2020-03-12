@@ -1,16 +1,21 @@
 {
   "name" : "uTorrent Link Sender",
-  "version" : "0.0.9",
+  "version" : "0.0.10",
   "description" : "Send a link to the uTorrent Web UI",
   "background" : {
                   "persistent": true, 
                   "scripts": [
-                    "js/shared.js",
-                    "background.js",
                     "js/jquery.min.js",
                     "js/bootstrap.min.js",
+                    "js/shared.js",
+                    "background.js",
                     "js/options.js"
                     ] },
+  "browser_action": {
+          "default_title": "uTorrent Link Sender",      // optional; shown in tooltip
+          "default_popup": "popup.html"        
+
+  },
   "permissions" : [
     "contextMenus",
     "notifications",
